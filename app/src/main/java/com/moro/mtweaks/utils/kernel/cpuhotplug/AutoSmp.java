@@ -34,12 +34,20 @@ public class AutoSmp {
     private static final String HOTPLUG_AUTOSMP_CONF = "/sys/kernel/autosmp/conf";
     private static final String HOTPLUG_AUTOSMP_ENABLE = HOTPLUG_AUTOSMP_PARAMETERS + "/enabled";
     private static final String HOTPLUG_AUTOSMP_CPUFREQ_DOWN = HOTPLUG_AUTOSMP_CONF + "/cpufreq_down";
+    private static final String HOTPLUG_AUTOSMP_CPUFREQ_DOWN_LC = HOTPLUG_AUTOSMP_CONF + "/cpufreq_down_lc";
+    private static final String HOTPLUG_AUTOSMP_CPUFREQ_DOWN_BC = HOTPLUG_AUTOSMP_CONF + "/cpufreq_down_bc";
     private static final String HOTPLUG_AUTOSMP_CPUFREQ_UP = HOTPLUG_AUTOSMP_CONF + "/cpufreq_up";
+    private static final String HOTPLUG_AUTOSMP_CPUFREQ_UP_LC = HOTPLUG_AUTOSMP_CONF + "/cpufreq_up_lc";
+    private static final String HOTPLUG_AUTOSMP_CPUFREQ_UP_BC = HOTPLUG_AUTOSMP_CONF + "/cpufreq_up_bc";
     private static final String HOTPLUG_AUTOSMP_CYCLE_DOWN = HOTPLUG_AUTOSMP_CONF + "/cycle_down";
     private static final String HOTPLUG_AUTOSMP_CYCLE_UP = HOTPLUG_AUTOSMP_CONF + "/cycle_up";
     private static final String HOTPLUG_AUTOSMP_DELAY = HOTPLUG_AUTOSMP_CONF + "/delay";
     private static final String HOTPLUG_AUTOSMP_MAX_CPUS = HOTPLUG_AUTOSMP_CONF + "/max_cpus";
+    private static final String HOTPLUG_AUTOSMP_MAX_CPUS_LC = HOTPLUG_AUTOSMP_CONF + "/max_cpus_lc";
+    private static final String HOTPLUG_AUTOSMP_MAX_CPUS_BC = HOTPLUG_AUTOSMP_CONF + "/max_cpus_bc";
     private static final String HOTPLUG_AUTOSMP_MIN_CPUS = HOTPLUG_AUTOSMP_CONF + "/min_cpus";
+    private static final String HOTPLUG_AUTOSMP_MIN_CPUS_LC = HOTPLUG_AUTOSMP_CONF + "/min_cpus_lc";
+    private static final String HOTPLUG_AUTOSMP_MIN_CPUS_BC = HOTPLUG_AUTOSMP_CONF + "/min_cpus_bc";
     private static final String HOTPLUG_AUTOSMP_SCROFF_SINGLE_CORE = HOTPLUG_AUTOSMP_CONF + "/scroff_single_core";
 
     public static void enableAutoSmpScroffSingleCoreActive(boolean enable, Context context) {
@@ -68,6 +76,32 @@ public class AutoSmp {
         return Utils.existFile(HOTPLUG_AUTOSMP_MIN_CPUS);
     }
 
+    public static void setAutoSmpMinCpusLc(int value, Context context) {
+        run(Control.write(String.valueOf(value), HOTPLUG_AUTOSMP_MIN_CPUS_LC),
+                HOTPLUG_AUTOSMP_MIN_CPUS_LC, context);
+    }
+
+    public static int getAutoSmpMinCpusLc() {
+        return Utils.strToInt(Utils.readFile(HOTPLUG_AUTOSMP_MIN_CPUS_LC));
+    }
+
+    public static boolean hasAutoSmpMinCpusLc() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_MIN_CPUS_LC);
+    }
+
+    public static void setAutoSmpMinCpusBc(int value, Context context) {
+        run(Control.write(String.valueOf(value), HOTPLUG_AUTOSMP_MIN_CPUS_BC),
+                HOTPLUG_AUTOSMP_MIN_CPUS_BC, context);
+    }
+
+    public static int getAutoSmpMinCpusBc() {
+        return Utils.strToInt(Utils.readFile(HOTPLUG_AUTOSMP_MIN_CPUS_BC));
+    }
+
+    public static boolean hasAutoSmpMinCpusBc() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_MIN_CPUS_BC);
+    }
+
     public static void setAutoSmpMaxCpus(int value, Context context) {
         run(Control.write(String.valueOf(value), HOTPLUG_AUTOSMP_MAX_CPUS),
                 HOTPLUG_AUTOSMP_MAX_CPUS, context);
@@ -79,6 +113,32 @@ public class AutoSmp {
 
     public static boolean hasAutoSmpMaxCpus() {
         return Utils.existFile(HOTPLUG_AUTOSMP_MAX_CPUS);
+    }
+
+    public static void setAutoSmpMaxCpusLc(int value, Context context) {
+        run(Control.write(String.valueOf(value), HOTPLUG_AUTOSMP_MAX_CPUS_LC),
+                HOTPLUG_AUTOSMP_MAX_CPUS_LC, context);
+    }
+
+    public static int getAutoSmpMaxCpusLc() {
+        return Utils.strToInt(Utils.readFile(HOTPLUG_AUTOSMP_MAX_CPUS_LC));
+    }
+
+    public static boolean hasAutoSmpMaxCpusLc() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_MAX_CPUS_LC);
+    }
+
+    public static void setAutoSmpMaxCpusBc(int value, Context context) {
+        run(Control.write(String.valueOf(value), HOTPLUG_AUTOSMP_MAX_CPUS_BC),
+                HOTPLUG_AUTOSMP_MAX_CPUS_BC, context);
+    }
+
+    public static int getAutoSmpMaxCpusBc() {
+        return Utils.strToInt(Utils.readFile(HOTPLUG_AUTOSMP_MAX_CPUS_BC));
+    }
+
+    public static boolean hasAutoSmpMaxCpusBc() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_MAX_CPUS_BC);
     }
 
     public static void setAutoSmpDelay(int value, Context context) {
@@ -132,6 +192,33 @@ public class AutoSmp {
         return Utils.existFile(HOTPLUG_AUTOSMP_CPUFREQ_UP);
     }
 
+    public static void setAutoSmpCpufreqUpLc(int value, Context context) {
+        run(Control.write(String.valueOf(value), HOTPLUG_AUTOSMP_CPUFREQ_UP_LC),
+                HOTPLUG_AUTOSMP_CPUFREQ_UP_LC, context);
+    }
+
+    public static int getAutoSmpCpufreqUpLc() {
+        return Utils.strToInt(Utils.readFile(HOTPLUG_AUTOSMP_CPUFREQ_UP_LC));
+    }
+
+    public static boolean hasAutoSmpCpufreqUpLc() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_CPUFREQ_UP_LC);
+    }
+
+
+    public static void setAutoSmpCpufreqUpBc(int value, Context context) {
+        run(Control.write(String.valueOf(value), HOTPLUG_AUTOSMP_CPUFREQ_UP_BC),
+                HOTPLUG_AUTOSMP_CPUFREQ_UP_BC, context);
+    }
+
+    public static int getAutoSmpCpufreqUpBc() {
+        return Utils.strToInt(Utils.readFile(HOTPLUG_AUTOSMP_CPUFREQ_UP_BC));
+    }
+
+    public static boolean hasAutoSmpCpufreqUpBc() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_CPUFREQ_UP_BC);
+    }
+
     public static void setAutoSmpCpufreqDown(int value, Context context) {
         run(Control.write(String.valueOf(value), HOTPLUG_AUTOSMP_CPUFREQ_DOWN),
                 HOTPLUG_AUTOSMP_CPUFREQ_DOWN, context);
@@ -143,6 +230,32 @@ public class AutoSmp {
 
     public static boolean hasAutoSmpCpufreqDown() {
         return Utils.existFile(HOTPLUG_AUTOSMP_CPUFREQ_DOWN);
+    }
+
+    public static void setAutoSmpCpufreqDownLc(int value, Context context) {
+        run(Control.write(String.valueOf(value), HOTPLUG_AUTOSMP_CPUFREQ_DOWN_LC),
+                HOTPLUG_AUTOSMP_CPUFREQ_DOWN_LC, context);
+    }
+
+    public static int getAutoSmpCpufreqDownLc() {
+        return Utils.strToInt(Utils.readFile(HOTPLUG_AUTOSMP_CPUFREQ_DOWN_LC));
+    }
+
+    public static boolean hasAutoSmpCpufreqDownLc() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_CPUFREQ_DOWN_LC);
+    }
+
+    public static void setAutoSmpCpufreqDownBc(int value, Context context) {
+        run(Control.write(String.valueOf(value), HOTPLUG_AUTOSMP_CPUFREQ_DOWN_BC),
+                HOTPLUG_AUTOSMP_CPUFREQ_DOWN_BC, context);
+    }
+
+    public static int getAutoSmpCpufreqDownBc() {
+        return Utils.strToInt(Utils.readFile(HOTPLUG_AUTOSMP_CPUFREQ_DOWN_BC));
+    }
+
+    public static boolean hasAutoSmpCpufreqDownBc() {
+        return Utils.existFile(HOTPLUG_AUTOSMP_CPUFREQ_DOWN_BC);
     }
 
     public static void enableAutoSmp(boolean enable, Context context) {

@@ -374,7 +374,11 @@
     <string name="autosmp">AutoSMP</string>
     <string name="autosmp_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by mrg666.</string>
     <string name="downrate_limits">Downrate Limits</string>
+    <string name="downrate_limits_lc">Downrate Limits LITTLE CPUs</string>
+    <string name="downrate_limits_bc">Downrate Limits BIG CPUs</string>
     <string name="uprate_limits">Uprate Limits</string>
+    <string name="uprate_limits_lc">Uprate Limits LITTLE CPUs</string>
+    <string name="uprate_limits_bc">Uprate Limits BIG CPUs</string>
     <string name="cycle_down">Cycle Down</string>
     <string name="cycle_down_summary">Cycles to wait after the last hotplug event to unplug another core.</string>
     <string name="cycle_up">Cycle Up</string>
@@ -397,8 +401,12 @@
     <string name="aio_hotplug_summary">All in One HotPlug for Qualcomm devices. Developed by Shoaib0597.</string>
     <string name="max_cpu_online_big">Maximum big CPUs Online</string>
     <string name="max_cpu_online_big_summary">Maximum number of big CPUs that will be online.</string>
+    <string name="min_cpu_online_big">Minimum big CPUs Online</string>
+    <string name="min_cpu_online_big_summary">Minimum number of big CPUs that will be online.</string>
     <string name="max_cpu_online_little">Maximum LITTLE CPUs Online</string>
     <string name="max_cpu_online_little_summary">Maximum number of LITTLE CPUs that will be online.</string>
+    <string name="min_cpu_online_little">Minimum LITTLE CPUs Online</string>
+    <string name="min_cpu_online_little_summary">Minimum number of LITTLE CPUs that will be online.</string>
 
     <!-- Hmp -->
     <string name="hmp">HMP</string>

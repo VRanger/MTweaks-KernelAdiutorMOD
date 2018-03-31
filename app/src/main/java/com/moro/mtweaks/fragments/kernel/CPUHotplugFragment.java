@@ -2030,6 +2030,44 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             autoSmp.add(cpuFreqDown);
         }
 
+        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpCpufreqDownLc()) {
+            SeekBarView cpuFreqDownLc = new SeekBarView();
+            cpuFreqDownLc.setTitle(getString(R.string.downrate_limits_lc));
+            cpuFreqDownLc.setUnit("%");
+            cpuFreqDownLc.setProgress(AutoSmp.getAutoSmpCpufreqDownLc());
+            cpuFreqDownLc.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSmp.setAutoSmpCpufreqDownLc(position, getActivity());
+                }
+            });
+
+            autoSmp.add(cpuFreqDownLc);
+        }
+
+        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpCpufreqDownBc()) {
+            SeekBarView cpuFreqDownBc = new SeekBarView();
+            cpuFreqDownBc.setTitle(getString(R.string.downrate_limits_bc));
+            cpuFreqDownBc.setUnit("%");
+            cpuFreqDownBc.setProgress(AutoSmp.getAutoSmpCpufreqDownBc());
+            cpuFreqDownBc.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSmp.setAutoSmpCpufreqDownBc(position, getActivity());
+                }
+            });
+
+            autoSmp.add(cpuFreqDownBc);
+        }
+
         if (AutoSmp.hasAutoSmpCpufreqUp()) {
             SeekBarView cpuFreqUp = new SeekBarView();
             cpuFreqUp.setTitle(getString(R.string.uprate_limits));
@@ -2047,6 +2085,44 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             });
 
             autoSmp.add(cpuFreqUp);
+        }
+
+        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpCpufreqUpLc()) {
+            SeekBarView cpuFreqUpLc = new SeekBarView();
+            cpuFreqUpLc.setTitle(getString(R.string.uprate_limits_lc));
+            cpuFreqUpLc.setUnit("%");
+            cpuFreqUpLc.setProgress(AutoSmp.getAutoSmpCpufreqUpLc());
+            cpuFreqUpLc.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSmp.setAutoSmpCpufreqUpLc(position, getActivity());
+                }
+            });
+
+            autoSmp.add(cpuFreqUpLc);
+        }
+
+        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpCpufreqUpBc()) {
+            SeekBarView cpuFreqUpBc = new SeekBarView();
+            cpuFreqUpBc.setTitle(getString(R.string.uprate_limits_bc));
+            cpuFreqUpBc.setUnit("%");
+            cpuFreqUpBc.setProgress(AutoSmp.getAutoSmpCpufreqUpBc());
+            cpuFreqUpBc.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSmp.setAutoSmpCpufreqUpBc(position, getActivity());
+                }
+            });
+
+            autoSmp.add(cpuFreqUpBc);
         }
 
         if (AutoSmp.hasAutoSmpCycleDown()) {
@@ -2131,6 +2207,58 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             autoSmp.add(maxCpus);
         }
 
+        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpMaxCpusLc()) {
+            List<String> list = new ArrayList<>();
+            list.add("Disable");
+            for (int i = 1; i <= mCPUFreq.getLITTLECpuRange().size(); i++) {
+                list.add(String.valueOf(i));
+            }
+
+            SeekBarView LITTLEMaxCpus = new SeekBarView();
+            LITTLEMaxCpus.setTitle(getString(R.string.max_cpu_online_little));
+            LITTLEMaxCpus.setSummary(getString(R.string.max_cpu_online_little_summary));
+            LITTLEMaxCpus.setItems(list);
+            LITTLEMaxCpus.setProgress(AutoSmp.getAutoSmpMaxCpusLc());
+            LITTLEMaxCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSmp.setAutoSmpMaxCpusLc(position, getActivity());
+                }
+            });
+
+            autoSmp.add(LITTLEMaxCpus);
+        }
+
+        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpMaxCpusBc()) {
+            List<String> list = new ArrayList<>();
+            list.add("Disable");
+            for (int i = 1; i <= mCPUFreq.getBigCpuRange().size(); i++) {
+                list.add(String.valueOf(i));
+            }
+
+            SeekBarView bigMaxCpus = new SeekBarView();
+            bigMaxCpus.setTitle(getString(R.string.max_cpu_online_big));
+            bigMaxCpus.setSummary(getString(R.string.max_cpu_online_big_summary));
+            bigMaxCpus.setItems(list);
+            bigMaxCpus.setProgress(AutoSmp.getAutoSmpMaxCpusBc());
+            bigMaxCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSmp.setAutoSmpMaxCpusBc(position, getActivity());
+                }
+            });
+
+            autoSmp.add(bigMaxCpus);
+        }
+
         if (AutoSmp.hasAutoSmpMinCpus()) {
             SeekBarView minCpus = new SeekBarView();
             minCpus.setTitle(getString(R.string.min_cpu_online));
@@ -2150,6 +2278,58 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             });
 
             autoSmp.add(minCpus);
+        }
+
+        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpMinCpusLc()) {
+            List<String> list = new ArrayList<>();
+            list.add("Disable");
+            for (int i = 1; i <= mCPUFreq.getLITTLECpuRange().size(); i++) {
+                list.add(String.valueOf(i));
+            }
+
+            SeekBarView LITTLEMinCpus = new SeekBarView();
+            LITTLEMinCpus.setTitle(getString(R.string.min_cpu_online_little));
+            LITTLEMinCpus.setSummary(getString(R.string.min_cpu_online_little_summary));
+            LITTLEMinCpus.setItems(list);
+            LITTLEMinCpus.setProgress(AutoSmp.getAutoSmpMinCpusLc());
+            LITTLEMinCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSmp.setAutoSmpMinCpusLc(position, getActivity());
+                }
+            });
+
+            autoSmp.add(LITTLEMinCpus);
+        }
+
+        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpMinCpusBc()) {
+            List<String> list = new ArrayList<>();
+            list.add("Disable");
+            for (int i = 1; i <= mCPUFreq.getBigCpuRange().size(); i++) {
+                list.add(String.valueOf(i));
+            }
+
+            SeekBarView bigMinCpus = new SeekBarView();
+            bigMinCpus.setTitle(getString(R.string.min_cpu_online_big));
+            bigMinCpus.setSummary(getString(R.string.min_cpu_online_big_summary));
+            bigMinCpus.setItems(list);
+            bigMinCpus.setProgress(AutoSmp.getAutoSmpMinCpusBc());
+            bigMinCpus.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
+                @Override
+                public void onMove(SeekBarView seekBarView, int position, String value) {
+                }
+
+                @Override
+                public void onStop(SeekBarView seekBarView, int position, String value) {
+                    AutoSmp.setAutoSmpMinCpusBc(position, getActivity());
+                }
+            });
+
+            autoSmp.add(bigMinCpus);
         }
 
         if (AutoSmp.hasAutoSmpScroffSingleCore()) {
