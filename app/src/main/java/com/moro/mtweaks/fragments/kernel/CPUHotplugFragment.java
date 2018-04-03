@@ -2518,7 +2518,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             aioHotplug.add(maxCpus);
         }
 
-        if (mCPUFreq.isBigLITTLE() && AiOHotplug.hasBigCores()) {
+        if (AiOHotplug.hasBigCores()) {
             List<String> list = new ArrayList<>();
             list.add("Disable");
             for (int i = 1; i <= mCPUFreq.getBigCpuRange().size(); i++) {
@@ -2544,7 +2544,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             aioHotplug.add(bigMaxCpus);
         }
 
-        if (mCPUFreq.isBigLITTLE() && AiOHotplug.hasLITTLECores()) {
+        if (AiOHotplug.hasLITTLECores()) {
             List<String> list = new ArrayList<>();
             list.add("Disable");
             for (int i = 1; i <= mCPUFreq.getLITTLECpuRange().size(); i++) {
