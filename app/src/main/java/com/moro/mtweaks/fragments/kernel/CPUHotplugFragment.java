@@ -2030,7 +2030,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             autoSmp.add(cpuFreqDown);
         }
 
-        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpCpufreqDownLc()) {
+        if (AutoSmp.hasAutoSmpCpufreqDownLc()) {
             SeekBarView cpuFreqDownLc = new SeekBarView();
             cpuFreqDownLc.setTitle(getString(R.string.downrate_limits_lc));
             cpuFreqDownLc.setUnit("%");
@@ -2049,7 +2049,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             autoSmp.add(cpuFreqDownLc);
         }
 
-        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpCpufreqDownBc()) {
+        if (AutoSmp.hasAutoSmpCpufreqDownBc()) {
             SeekBarView cpuFreqDownBc = new SeekBarView();
             cpuFreqDownBc.setTitle(getString(R.string.downrate_limits_bc));
             cpuFreqDownBc.setUnit("%");
@@ -2087,7 +2087,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             autoSmp.add(cpuFreqUp);
         }
 
-        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpCpufreqUpLc()) {
+        if (AutoSmp.hasAutoSmpCpufreqUpLc()) {
             SeekBarView cpuFreqUpLc = new SeekBarView();
             cpuFreqUpLc.setTitle(getString(R.string.uprate_limits_lc));
             cpuFreqUpLc.setUnit("%");
@@ -2106,7 +2106,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             autoSmp.add(cpuFreqUpLc);
         }
 
-        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpCpufreqUpBc()) {
+        if (AutoSmp.hasAutoSmpCpufreqUpBc()) {
             SeekBarView cpuFreqUpBc = new SeekBarView();
             cpuFreqUpBc.setTitle(getString(R.string.uprate_limits_bc));
             cpuFreqUpBc.setUnit("%");
@@ -2207,7 +2207,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             autoSmp.add(maxCpus);
         }
 
-        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpMaxCpusLc()) {
+        if (AutoSmp.hasAutoSmpMaxCpusLc()) {
             List<String> list = new ArrayList<>();
             list.add("Disable");
             for (int i = 1; i <= mCPUFreq.getLITTLECpuRange().size(); i++) {
@@ -2233,7 +2233,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             autoSmp.add(LITTLEMaxCpus);
         }
 
-        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpMaxCpusBc()) {
+        if (AutoSmp.hasAutoSmpMaxCpusBc()) {
             List<String> list = new ArrayList<>();
             list.add("Disable");
             for (int i = 1; i <= mCPUFreq.getBigCpuRange().size(); i++) {
@@ -2280,7 +2280,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             autoSmp.add(minCpus);
         }
 
-        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpMinCpusLc()) {
+        if (AutoSmp.hasAutoSmpMinCpusLc()) {
             List<String> list = new ArrayList<>();
             list.add("Disable");
             for (int i = 1; i <= mCPUFreq.getLITTLECpuRange().size(); i++) {
@@ -2306,7 +2306,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment {
             autoSmp.add(LITTLEMinCpus);
         }
 
-        if (mCPUFreq.isBigLITTLE() && AutoSmp.hasAutoSmpMinCpusBc()) {
+        if (AutoSmp.hasAutoSmpMinCpusBc()) {
             List<String> list = new ArrayList<>();
             list.add("Disable");
             for (int i = 1; i <= mCPUFreq.getBigCpuRange().size(); i++) {
