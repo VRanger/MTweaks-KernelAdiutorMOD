@@ -33,6 +33,7 @@ import com.moro.mtweaks.views.recyclerview.CardView;
 import com.moro.mtweaks.views.recyclerview.RecyclerViewItem;
 import com.moro.mtweaks.views.recyclerview.SeekBarView;
 import com.moro.mtweaks.views.recyclerview.SelectView;
+import com.moro.mtweaks.views.recyclerview.SelectViewCheckbox;
 import com.moro.mtweaks.views.recyclerview.SwitchView;
 import com.moro.mtweaks.views.recyclerview.ValueView;
 
@@ -131,7 +132,7 @@ public class WakeFragment extends RecyclerViewFragment {
         s2wCard.setTitle(getString(R.string.s2w));
 
         if (mS2w.supported()) {
-            SelectView s2w = new SelectView();
+            SelectViewCheckbox s2w = new SelectViewCheckbox();
             s2w.setTitle(getString(R.string.s2w));
             s2w.setSummary(getString(R.string.s2w_summary));
             s2w.setItems(mS2w.getMenu(getActivity()));

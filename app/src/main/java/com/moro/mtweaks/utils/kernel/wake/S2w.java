@@ -53,6 +53,7 @@ public class S2w {
     private final HashMap<String, List<Integer>> mFiles = new HashMap<>();
     private final List<Integer> mS2wMenu = new ArrayList<>();
     private final List<Integer> mS2w2Menu = new ArrayList<>();
+    private final List<Integer> mS2w3Menu = new ArrayList<>();
     private final List<Integer> mGenericMenu = new ArrayList<>();
 
     {
@@ -67,11 +68,16 @@ public class S2w {
         mS2w2Menu.add(R.string.s2w_down);
         mS2w2Menu.add(R.string.s2w_any);
 
+        mS2w3Menu.add(R.string.slide_right);
+        mS2w3Menu.add(R.string.slide_left);
+        mS2w3Menu.add(R.string.slide_up);
+        mS2w3Menu.add(R.string.slide_down);
+
         mGenericMenu.add(R.string.disabled);
         mGenericMenu.add(R.string.enabled);
 
         mFiles.put(S2W_ONLY, mGenericMenu);
-        mFiles.put(SW2, mS2wMenu);
+        mFiles.put(SW2, mS2w3Menu);
         mFiles.put(SW2_2, mS2w2Menu);
     }
 
