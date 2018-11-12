@@ -136,7 +136,7 @@ public class WakeFragment extends RecyclerViewFragment {
             s2w.setTitle(getString(R.string.s2w));
             s2w.setSummary(getString(R.string.s2w_summary));
             s2w.setItems(mS2w.getMenu(getActivity()));
-            s2w.setItem(mS2w.get());
+            s2w.setItem(mS2w.getStringValue(getActivity()));
             s2w.setOnItemSelected((selectView, position, item)
                     -> mS2w.set(position, getActivity()));
 

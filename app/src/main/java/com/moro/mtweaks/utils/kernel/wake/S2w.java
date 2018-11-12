@@ -112,6 +112,62 @@ public class S2w {
         return Utils.strToInt(Utils.readFile(FILE));
     }
 
+    public String getStringValue(Context context) {
+        String value = Utils.readFile(FILE);
+        switch (value) {
+            case "0":
+                return context.getResources().getString(R.string.disabled);
+            case "1":
+                return context.getResources().getString(R.string.right);
+            case "2":
+                return context.getResources().getString(R.string.left);
+            case "3":
+                return context.getResources().getString(R.string.right) + ", " +
+                        context.getResources().getString(R.string.left);
+            case "4":
+                return context.getResources().getString(R.string.up);
+            case "5":
+                return context.getResources().getString(R.string.right) + ", " +
+                        context.getResources().getString(R.string.up);
+            case "6":
+                return context.getResources().getString(R.string.left) + ", " +
+                        context.getResources().getString(R.string.up);
+            case "7":
+                return context.getResources().getString(R.string.right) + ", " +
+                        context.getResources().getString(R.string.left) + ", " +
+                        context.getResources().getString(R.string.up);
+            case "8":
+                return context.getResources().getString(R.string.down);
+            case "9":
+                return context.getResources().getString(R.string.right) + ", " +
+                        context.getResources().getString(R.string.down);
+            case "10":
+                return context.getResources().getString(R.string.left) + ", " +
+                        context.getResources().getString(R.string.down);
+            case "11":
+                return context.getResources().getString(R.string.right) + ", " +
+                        context.getResources().getString(R.string.left) + ", " +
+                        context.getResources().getString(R.string.down);
+            case "12":
+                return context.getResources().getString(R.string.up) + ", " +
+                        context.getResources().getString(R.string.down);
+            case "13":
+                return context.getResources().getString(R.string.right) + ", " +
+                        context.getResources().getString(R.string.up) + ", " +
+                        context.getResources().getString(R.string.down);
+            case "14":
+                return context.getResources().getString(R.string.left) + ", " +
+                        context.getResources().getString(R.string.up) + ", " +
+                        context.getResources().getString(R.string.down);
+            case "15":
+                return context.getResources().getString(R.string.right) + ", " +
+                        context.getResources().getString(R.string.left) + ", " +
+                        context.getResources().getString(R.string.up) + ", " +
+                        context.getResources().getString(R.string.down);
+        }
+        return context.getResources().getString(R.string.not_in_range);
+    }
+
     public List<String> getMenu(Context context) {
         List<String> list = new ArrayList<>();
         for (int id : mFiles.get(FILE)) {

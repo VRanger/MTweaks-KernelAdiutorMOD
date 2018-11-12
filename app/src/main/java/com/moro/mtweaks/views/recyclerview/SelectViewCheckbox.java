@@ -65,24 +65,9 @@ public class SelectViewCheckbox extends ValueView {
         setValue(item);
     }
 
-    public void setItem(int n) {
-        if (n >= 0 && n <= 15) {
-            if (n == 0) setValue(R.string.disabled);
-            if (n == 1) setValue(R.string.right);
-            if (n == 2) setValue(R.string.left);
-            if (n == 3) setValue(R.string.right + ", " + R.string.left);
-            if (n == 4) setValue(R.string.up);
-            if (n == 5) setValue(R.string.right + ", "+ R.string.up);
-            if (n == 6) setValue(R.string.left + ", "+ R.string.left);
-            if (n == 7) setValue(R.string.right + ", "+ R.string.left + ", "+ R.string.up);
-            if (n == 8) setValue(R.string.down);
-            if (n == 9) setValue(R.string.right + ", "+ R.string.down);
-            if (n == 10) setValue(R.string.left + ", "+ R.string.down);
-            if (n == 11) setValue(R.string.right + ", "+ R.string.left + ", "+ R.string.down);
-            if (n == 12) setValue(R.string.up + ", " + R.string.down);
-            if (n == 13) setValue(R.string.right + ", "+ R.string.up + ", " + R.string.down);
-            if (n == 14) setValue(R.string.left + ", "+ R.string.up + ", " + R.string.down);
-            if (n == 15) setValue(R.string.right + ", "+ R.string.left + ", "+ R.string.up + ", " + R.string.down);
+    public void setItem(int position) {
+        if (position >= 0 && position < mItems.size()) {
+            setValue(mItems.get(position));
         } else {
             setValue(R.string.not_in_range);
         }
