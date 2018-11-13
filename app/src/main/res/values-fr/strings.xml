@@ -116,8 +116,6 @@
     <string name="refresh">Actualiser</string>
     <string name="reset">Réinitialiser</string>
     <string name="restore">Restaurer</string>
-    <string name="cluster_big">Haute</string>
-    <string name="cluster_little">Basse</string>
     <string name="deep_sleep">Veille profonde</string>
     <string name="uptime">Temps de fonctionnement</string>
     <string name="error_frequencies">Échec du chargement des fréquences</string>
