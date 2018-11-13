@@ -19,7 +19,7 @@
  */
 package com.moro.mtweaks.views.recyclerview;
 
-import androidx.appcompat.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatButton;
 import android.view.View;
 
 import com.moro.mtweaks.R;

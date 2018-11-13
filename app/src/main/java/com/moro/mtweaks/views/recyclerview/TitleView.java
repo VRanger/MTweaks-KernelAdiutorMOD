@@ -19,7 +19,7 @@
  */
 package com.moro.mtweaks.views.recyclerview;
 
-import androidx.appcompat.widget.AppCompatTextView;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
 import com.moro.mtweaks.R;

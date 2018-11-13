@@ -19,7 +19,7 @@
  */
 package com.moro.mtweaks.fragments.kernel;
 
-import com.google.android.material.snackbar.Snackbar;
+import android.support.design.widget.Snackbar;
 
 import com.moro.mtweaks.R;
 import com.moro.mtweaks.fragments.ApplyOnBootFragment;

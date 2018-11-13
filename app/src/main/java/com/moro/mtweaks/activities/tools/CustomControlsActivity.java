@@ -20,8 +20,8 @@
 package com.moro.mtweaks.activities.tools;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 
 import com.moro.mtweaks.R;
 import com.moro.mtweaks.activities.BaseActivity;

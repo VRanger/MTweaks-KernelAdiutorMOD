@@ -21,7 +21,7 @@ package com.moro.mtweaks.fragments.tools.downloads;
 
 import android.Manifest;
 import android.content.Intent;
-import com.google.android.material.snackbar.Snackbar;
+import android.support.design.widget.Snackbar;
 
 import com.moro.mtweaks.R;
 import com.moro.mtweaks.activities.tools.DownloadsActivity;
