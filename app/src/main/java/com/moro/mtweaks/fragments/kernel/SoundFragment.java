@@ -29,6 +29,7 @@ import com.moro.mtweaks.utils.kernel.sound.Sound;
 import com.moro.mtweaks.views.recyclerview.CardView;
 import com.moro.mtweaks.views.recyclerview.CheckBoxView;
 import com.moro.mtweaks.views.recyclerview.DescriptionView;
+import com.moro.mtweaks.views.recyclerview.EqualizerView;
 import com.moro.mtweaks.views.recyclerview.RecyclerViewItem;
 import com.moro.mtweaks.views.recyclerview.SeekBarView;
 import com.moro.mtweaks.views.recyclerview.SelectView;
@@ -428,6 +429,13 @@ public class SoundFragment extends RecyclerViewFragment {
         CheckBoxView mono = new CheckBoxView();
         SwitchView eqsw = new SwitchView();
         SelectView eqprofile = new SelectView();
+
+        CardView test = new CardView(getActivity());
+        test.setTitle("TEST EQUALIZER");
+
+        EqualizerView eq = new EqualizerView();
+        test.addItem(eq);
+        items.add(test);
 
         CardView asCard = new CardView(getActivity());
         asCard.setTitle(getString(R.string.arizona_title));
