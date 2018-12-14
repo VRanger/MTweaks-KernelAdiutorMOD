@@ -62,6 +62,39 @@
         <item>@string/arizona_eql8_summary</item>
     </string-array>
 
+    <string-array name="eq_seekbars">
+        <item>seekbar0</item>
+        <item>seekbar1</item>
+        <item>seekbar2</item>
+        <item>seekbar3</item>
+        <item>seekbar4</item>
+        <item>seekbar5</item>
+        <item>seekbar6</item>
+        <item>seekbar7</item>
+    </string-array>
+
+    <string-array name="eq_values">
+        <item>value0</item>
+        <item>value1</item>
+        <item>value2</item>
+        <item>value3</item>
+        <item>value4</item>
+        <item>value5</item>
+        <item>value6</item>
+        <item>value7</item>
+    </string-array>
+
+    <string-array name="eq_titles">
+        <item>title0</item>
+        <item>title1</item>
+        <item>title2</item>
+        <item>title3</item>
+        <item>title4</item>
+        <item>title5</item>
+        <item>title6</item>
+        <item>title7</item>
+    </string-array>
+
     <!-- Low Memory Killer -->
     <string-array name="lmk_names">
         <item>@string/foreground_app</item>

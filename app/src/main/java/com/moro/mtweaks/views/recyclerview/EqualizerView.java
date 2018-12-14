@@ -22,11 +22,11 @@ public class EqualizerView extends RecyclerViewItem {
         void onMove(EqualizerView seekBarView, int position, String value);
     }
 
-    private AppCompatTextView mTitle;
-    private AppCompatTextView mValue;
-    private SeekBar mSeekBar;
+    private AppCompatTextView mTitle0, mTitle1, mTitle2, mTitle3, mTitle4, mTitle5, mTitle6, mTitle7;
+    private AppCompatTextView mValue0, mValue1, mValue2, mValue3, mValue4, mValue5, mValue6, mValue7;
+    private SeekBar mSeekBar0, mSeekBar1, mSeekBar2, mSeekBar3, mSeekBar4, mSeekBar5, mSeekBar6, mSeekBar7;
 
-    private CharSequence mTitleText;
+    private CharSequence mTitleText0, mTitleText1, mTitleText2, mTitleText3, mTitleText4, mTitleText5, mTitleText6, mTitleText7;
 
     private int mMin;
     private int mMax = 100;
@@ -46,19 +46,48 @@ public class EqualizerView extends RecyclerViewItem {
 
     @Override
     public void onCreateView(final View view) {
-        mTitle = view.findViewById(R.id.title1);
-        mValue = view.findViewById(R.id.value1);
-        mSeekBar = view.findViewById(R.id.seekbar1);
+
+        mTitle0 = view.findViewById(R.id.title0);
+        mValue0 = view.findViewById(R.id.value0);
+        mSeekBar0 = view.findViewById(R.id.seekbar0);
+
+        mTitle1 = view.findViewById(R.id.title1);
+        mValue1 = view.findViewById(R.id.value1);
+        mSeekBar1 = view.findViewById(R.id.seekbar1);
+
+        mTitle2 = view.findViewById(R.id.title2);
+        mValue2 = view.findViewById(R.id.value2);
+        mSeekBar2 = view.findViewById(R.id.seekbar2);
+
+        mTitle3 = view.findViewById(R.id.title3);
+        mValue3 = view.findViewById(R.id.value3);
+        mSeekBar3 = view.findViewById(R.id.seekbar3);
+
+        mTitle4 = view.findViewById(R.id.title4);
+        mValue4 = view.findViewById(R.id.value4);
+        mSeekBar4 = view.findViewById(R.id.seekbar4);
+
+        mTitle5 = view.findViewById(R.id.title5);
+        mValue5 = view.findViewById(R.id.value5);
+        mSeekBar5 = view.findViewById(R.id.seekbar5);
+
+        mTitle6 = view.findViewById(R.id.title6);
+        mValue6 = view.findViewById(R.id.value6);
+        mSeekBar6 = view.findViewById(R.id.seekbar6);
+
+        mTitle7 = view.findViewById(R.id.title7);
+        mValue7 = view.findViewById(R.id.value7);
+        mSeekBar7 = view.findViewById(R.id.seekbar7);
 
 
-        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        mSeekBar0.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
                 if (value < mItems.size() && value >= 0) {
                     mProgress = value;
                     String text = mItems.get(value);
                     if (mUnit != null) text += mUnit;
-                    mValue.setText(text);
+                    mValue0.setText(text);
                     if (mOnSeekBarListener != null) {
                         mOnSeekBarListener.onMove(
                                 EqualizerView.this, mProgress, mItems.get(mProgress));
@@ -82,13 +111,46 @@ public class EqualizerView extends RecyclerViewItem {
                 }
             }
         });
-        mSeekBar.setFocusable(false);
+        mSeekBar0.setFocusable(false);
+
+        mSeekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
+                if (value < mItems.size() && value >= 0) {
+                    mProgress = value;
+                    String text = mItems.get(value);
+                    if (mUnit != null) text += mUnit;
+                    mValue1.setText(text);
+                    if (mOnSeekBarListener != null) {
+                        mOnSeekBarListener.onMove(
+                                EqualizerView.this, mProgress, mItems.get(mProgress));
+                    }
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                try {
+                    if (mOnSeekBarListener != null) {
+                        mOnSeekBarListener.onStop(
+                                EqualizerView.this, mProgress, mItems.get(mProgress));
+                    }
+                } catch (Exception e) {
+                    Log.crashlyticsE(e.getMessage());
+                }
+            }
+        });
+        mSeekBar1.setFocusable(false);
 
         super.onCreateView(view);
     }
 
-    public void setTitle(CharSequence title) {
-        mTitleText = title;
+    public void setTitle0(CharSequence title) {
+        mTitleText0 = title;
         refresh();
     }
 
@@ -148,12 +210,35 @@ public class EqualizerView extends RecyclerViewItem {
     @Override
     protected void refresh() {
         super.refresh();
-        if (mTitle != null) {
-            if (mTitleText != null) {
-                mTitle.setText(mTitleText);
-                mTitle.setVisibility(View.VISIBLE);
+        if (mTitle0 != null && mTitle1 != null && mTitle2 != null && mTitle3 != null
+                && mTitle4 != null && mTitle5 != null && mTitle6 != null && mTitle7 != null) {
+            if (mTitleText0 != null && mTitleText1 != null && mTitleText2 != null && mTitleText3 != null
+                    && mTitleText4 != null && mTitleText5 != null && mTitleText6 != null && mTitleText7 != null) {
+                mTitle0.setText(mTitleText0);
+                mTitle0.setVisibility(View.VISIBLE);
+                mTitle1.setText(mTitleText1);
+                mTitle1.setVisibility(View.VISIBLE);
+                mTitle2.setText(mTitleText2);
+                mTitle2.setVisibility(View.VISIBLE);
+                mTitle3.setText(mTitleText3);
+                mTitle3.setVisibility(View.VISIBLE);
+                mTitle4.setText(mTitleText4);
+                mTitle4.setVisibility(View.VISIBLE);
+                mTitle5.setText(mTitleText5);
+                mTitle5.setVisibility(View.VISIBLE);
+                mTitle6.setText(mTitleText6);
+                mTitle6.setVisibility(View.VISIBLE);
+                mTitle7.setText(mTitleText7);
+                mTitle7.setVisibility(View.VISIBLE);
             } else {
-                mTitle.setVisibility(View.GONE);
+                mTitle0.setVisibility(View.GONE);
+                mTitle1.setVisibility(View.GONE);
+                mTitle2.setVisibility(View.GONE);
+                mTitle3.setVisibility(View.GONE);
+                mTitle4.setVisibility(View.GONE);
+                mTitle5.setVisibility(View.GONE);
+                mTitle6.setVisibility(View.GONE);
+                mTitle7.setVisibility(View.GONE);
             }
         }
         if (mItems.size() == 0) {
@@ -161,25 +246,25 @@ public class EqualizerView extends RecyclerViewItem {
                 mItems.add(String.valueOf(i));
             }
         }
-        if (mSeekBar != null) {
-            mSeekBar.setMax(mItems.size() - 1);
+        if (mSeekBar0 != null) {
+            mSeekBar0.setMax(mItems.size() - 1);
             //mSeekBar.setMin(0);
-            mSeekBar.setAlpha(mAlpha);
-            mSeekBar.setEnabled(mEnabled);
-            if (mValue != null) {
+            mSeekBar0.setAlpha(mAlpha);
+            mSeekBar0.setEnabled(mEnabled);
+            if (mValue0 != null) {
                 try {
                     String text = mItems.get(mProgress);
-                    mSeekBar.setProgress(mProgress);
+                    mSeekBar0.setProgress(mProgress);
                     if (mUnit != null) text += mUnit;
-                    mValue.setText(text);
+                    mValue0.setText(text);
                 } catch (Exception ignored) {
-                    mValue.setText(mValue.getResources().getString(R.string.not_in_range));
+                    mValue0.setText(mValue0.getResources().getString(R.string.not_in_range));
                 }
             }
             if(mEnabled){
-                mSeekBar.setAlpha(1f);
+                mSeekBar0.setAlpha(1f);
             } else {
-                mSeekBar.setAlpha(0.4f);
+                mSeekBar0.setAlpha(0.4f);
             }
         }
     }
