@@ -433,17 +433,35 @@ public class SoundFragment extends RecyclerViewFragment {
 
         String[] eqNames = getResources().getStringArray(R.array.eq_names);
         String[] eqDescriptions = getResources().getStringArray(R.array.eq_summary);
-        List<String> eqValues = ArizonaSound.getEqValues();
+        List<Integer> eqValues = ArizonaSound.getEqValues();
         List<String> eqLimit = ArizonaSound.getEqLimit();
 
         CardView test = new CardView(getActivity());
         test.setTitle("TEST EQUALIZER");
 
         List<String> txt =  Arrays.asList("25Hz", "100Hz", "250Hz", "500Hz", "1KHz", "2KHz", "4KHz", "16KHz");
+        List<Integer> val = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            val.add(eqLimit.indexOf(String.valueOf(eqValues.get(i))));
+        }
+
 
         EqualizerView eq = new EqualizerView();
         eq.setItems(eqLimit);
         eq.setTitles(txt);
+        eq.setProgress(val);
+        eq.setOnSeekBarListener(new EqualizerView.OnSeekBarListener() {
+            @Override
+            public void onStop(EqualizerView equalizerView, int position, String value, int id) {
+                Utils.toast("position: " + position + " , Value: " + value + " Id: " + id, getActivity());
+                ArizonaSound.setEqValues(value, id, getActivity());
+            }
+
+            @Override
+            public void onMove(EqualizerView equalizerView, int position, String value, int id) {
+
+            }
+        });
 
         test.addItem(eq);
         items.add(test);
@@ -485,10 +503,8 @@ public class SoundFragment extends RecyclerViewFragment {
                                 eqprofile.setItem(0);
                                 AppSettings.saveInt("arizona_eq_profile", 0, getActivity());
 
-                                List<String> limit = ArizonaSound.getEqLimit();
-                                List<String> values = ArizonaSound.getEqValues();
                                 for (int i = 0; i < 8; i++) {
-                                    mEqGain.get(i).setProgress(limit.indexOf(values.get(i)));
+                                    mEqGain.get(i).setProgress(eqLimit.indexOf(String.valueOf(eqValues.get(i))));
                                 }
                             }
                     }
@@ -622,7 +638,7 @@ public class SoundFragment extends RecyclerViewFragment {
                 eqgain.setSummary(eqDescriptions[i]);
                 eqgain.setEnabled(ArizonaSound.isEqSwEnabled());
                 eqgain.setItems(eqLimit);
-                eqgain.setProgress(ArizonaSound.getEqLimit().indexOf(eqValues.get(i)));
+                eqgain.setProgress(eqLimit.indexOf(String.valueOf(eqValues.get(i))));
                 eqgain.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                     @Override
                     public void onStop(SeekBarView seekBarView, int position, String value) {

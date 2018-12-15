@@ -187,10 +187,10 @@ public class ArizonaSound {
         return Arrays.asList(list);
     }
 
-    public static List<String> getEqValues() {
-        List<String> list = new ArrayList<>();
+    public static List<Integer> getEqValues() {
+        List<Integer> list = new ArrayList<>();
         for (String file : sEqGains) {
-            list.add(Utils.readFile(file));
+            list.add(Utils.strToInt(Utils.readFile(file)));
         }
         return list;
     }

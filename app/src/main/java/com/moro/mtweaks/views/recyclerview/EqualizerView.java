@@ -18,9 +18,9 @@ import androidx.appcompat.widget.AppCompatTextView;
 public class EqualizerView extends RecyclerViewItem {
 
     public interface OnSeekBarListener {
-        void onStop(EqualizerView seekBarView, int position, String value);
+        void onStop(EqualizerView equalizerView, int position, String value, int id);
 
-        void onMove(EqualizerView seekBarView, int position, String value);
+        void onMove(EqualizerView equalizerView, int position, String value, int id);
     }
 
     private AppCompatTextView mTitle0, mTitle1, mTitle2, mTitle3, mTitle4, mTitle5, mTitle6, mTitle7;
@@ -31,7 +31,7 @@ public class EqualizerView extends RecyclerViewItem {
     private List<AppCompatTextView> mValues = new ArrayList<>();
     private List<SeekBar> mSeekBars = new ArrayList<>();
 
-    private int mProgress;
+    private List<Integer> mProgress = new ArrayList<>();
     private String mUnit;
     private List<String> mItems = new ArrayList<>();
     private List<String> mTitlesText = new ArrayList<>();
@@ -90,13 +90,13 @@ public class EqualizerView extends RecyclerViewItem {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
                     if (value < mItems.size() && value >= 0) {
-                        mProgress = value;
+                        mProgress.set(I, value);
                         String text = mItems.get(value);
                         if (mUnit != null) text += mUnit;
                         mValues.get(I).setText(text);
                         if (mOnSeekBarListener != null) {
                             mOnSeekBarListener.onMove(
-                                    EqualizerView.this, mProgress, mItems.get(mProgress));
+                                    EqualizerView.this, mProgress.get(I), mItems.get(mProgress.get(I)), I);
                         }
                     }
                 }
@@ -110,7 +110,7 @@ public class EqualizerView extends RecyclerViewItem {
                     try {
                         if (mOnSeekBarListener != null) {
                             mOnSeekBarListener.onStop(
-                                    EqualizerView.this, mProgress, mItems.get(mProgress));
+                                    EqualizerView.this, mProgress.get(I), mItems.get(mProgress.get(I)), I);
                         }
                     } catch (Exception e) {
                         Log.crashlyticsE(e.getMessage());
@@ -124,14 +124,16 @@ public class EqualizerView extends RecyclerViewItem {
     }
 
     public void setTitles(List<String> title) {
-        for (int i = 0; i < 8; i++) {
-            mTitlesText.add(title.get(i));
-        }
+        mTitlesText.clear();
+        mTitlesText.addAll(title);
         refresh();
     }
 
-    public void setProgress(int progress) {
-        mProgress = progress;
+    public void setProgress(List<Integer> progress) {
+        mProgress.clear();
+        for (int i = 0; i < 8; i++) {
+            mProgress.add(progress.get(i));
+        }
         refresh();
     }
 
@@ -157,7 +159,7 @@ public class EqualizerView extends RecyclerViewItem {
         refresh();
     }
 
-    public int getProgress() {
+    public List<Integer> getProgress() {
         return mProgress;
     }
 
@@ -190,8 +192,8 @@ public class EqualizerView extends RecyclerViewItem {
                 if (mValue0 != null && mValue1 != null && mValue2 != null && mValue3 != null
                         && mValue4 != null && mValue5 != null && mValue6 != null && mValue7 != null) {
                     try {
-                        String text = mItems.get(mProgress);
-                        mSeekBars.get(i).setProgress(mProgress);
+                        String text = mItems.get(mProgress.get(i));
+                        mSeekBars.get(i).setProgress(mProgress.get(i));
                         if (mUnit != null) text += mUnit;
                         mValues.get(i).setText(text);
                     } catch (Exception ignored) {
