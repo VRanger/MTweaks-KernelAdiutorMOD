@@ -37,6 +37,7 @@ import com.moro.mtweaks.views.recyclerview.SwitchView;
 import com.moro.mtweaks.views.recyclerview.TitleView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -430,10 +431,20 @@ public class SoundFragment extends RecyclerViewFragment {
         SwitchView eqsw = new SwitchView();
         SelectView eqprofile = new SelectView();
 
+        String[] eqNames = getResources().getStringArray(R.array.eq_names);
+        String[] eqDescriptions = getResources().getStringArray(R.array.eq_summary);
+        List<String> eqValues = ArizonaSound.getEqValues();
+        List<String> eqLimit = ArizonaSound.getEqLimit();
+
         CardView test = new CardView(getActivity());
         test.setTitle("TEST EQUALIZER");
 
+        List<String> txt =  Arrays.asList("25Hz", "100Hz", "250Hz", "500Hz", "1KHz", "2KHz", "4KHz", "16KHz");
+
         EqualizerView eq = new EqualizerView();
+        eq.setItems(eqLimit);
+        eq.setTitles(txt);
+
         test.addItem(eq);
         items.add(test);
 
@@ -604,20 +615,14 @@ public class SoundFragment extends RecyclerViewFragment {
             });
             eqCard.addItem(eqprofile);
 
-
-            String[] names = getResources().getStringArray(R.array.eq_names);
-            String[] descriptions = getResources().getStringArray(R.array.eq_summary);
-            List<String> values = ArizonaSound.getEqValues();
-            List<String> eqLimit = ArizonaSound.getEqLimit();
-
             for (int i = 0; i < 8; i++) {
                 final int id = i;
                 SeekBarView eqgain = new SeekBarView();
-                eqgain.setTitle(names[i]);
-                eqgain.setSummary(descriptions[i]);
+                eqgain.setTitle(eqNames[i]);
+                eqgain.setSummary(eqDescriptions[i]);
                 eqgain.setEnabled(ArizonaSound.isEqSwEnabled());
                 eqgain.setItems(eqLimit);
-                eqgain.setProgress(ArizonaSound.getEqLimit().indexOf(values.get(i)));
+                eqgain.setProgress(ArizonaSound.getEqLimit().indexOf(eqValues.get(i)));
                 eqgain.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
                     @Override
                     public void onStop(SeekBarView seekBarView, int position, String value) {

@@ -7,12 +7,13 @@ import com.moro.mtweaks.R;
 import com.moro.mtweaks.utils.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
 /**
- * Created by willi on 06.05.16.
+ * Created by morogoku on 14.12.18.
  */
 public class EqualizerView extends RecyclerViewItem {
 
@@ -26,14 +27,14 @@ public class EqualizerView extends RecyclerViewItem {
     private AppCompatTextView mValue0, mValue1, mValue2, mValue3, mValue4, mValue5, mValue6, mValue7;
     private SeekBar mSeekBar0, mSeekBar1, mSeekBar2, mSeekBar3, mSeekBar4, mSeekBar5, mSeekBar6, mSeekBar7;
 
-    private CharSequence mTitleText0, mTitleText1, mTitleText2, mTitleText3, mTitleText4, mTitleText5, mTitleText6, mTitleText7;
+    private List<AppCompatTextView> mTitles = new ArrayList<>();
+    private List<AppCompatTextView> mValues = new ArrayList<>();
+    private List<SeekBar> mSeekBars = new ArrayList<>();
 
-    private int mMin;
-    private int mMax = 100;
     private int mProgress;
     private String mUnit;
     private List<String> mItems = new ArrayList<>();
-    private int mOffset = 1;
+    private List<String> mTitlesText = new ArrayList<>();
     private boolean mEnabled = true;
     private float mAlpha = 1f;
 
@@ -79,89 +80,58 @@ public class EqualizerView extends RecyclerViewItem {
         mValue7 = view.findViewById(R.id.value7);
         mSeekBar7 = view.findViewById(R.id.seekbar7);
 
+        mTitles = Arrays.asList(mTitle0, mTitle1, mTitle2, mTitle3, mTitle4, mTitle5, mTitle6, mTitle7);
+        mValues = Arrays.asList(mValue0, mValue1, mValue2, mValue3, mValue4, mValue5, mValue6, mValue7);
+        mSeekBars = Arrays.asList(mSeekBar0, mSeekBar1, mSeekBar2, mSeekBar3, mSeekBar4, mSeekBar5, mSeekBar6, mSeekBar7);
 
-        mSeekBar0.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
-                if (value < mItems.size() && value >= 0) {
-                    mProgress = value;
-                    String text = mItems.get(value);
-                    if (mUnit != null) text += mUnit;
-                    mValue0.setText(text);
-                    if (mOnSeekBarListener != null) {
-                        mOnSeekBarListener.onMove(
-                                EqualizerView.this, mProgress, mItems.get(mProgress));
+        for (int i = 0; i < 8; i++) {
+            int I = i;
+            mSeekBars.get(i).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
+                    if (value < mItems.size() && value >= 0) {
+                        mProgress = value;
+                        String text = mItems.get(value);
+                        if (mUnit != null) text += mUnit;
+                        mValues.get(I).setText(text);
+                        if (mOnSeekBarListener != null) {
+                            mOnSeekBarListener.onMove(
+                                    EqualizerView.this, mProgress, mItems.get(mProgress));
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                try {
-                    if (mOnSeekBarListener != null) {
-                        mOnSeekBarListener.onStop(
-                                EqualizerView.this, mProgress, mItems.get(mProgress));
-                    }
-                } catch (Exception e) {
-                    Log.crashlyticsE(e.getMessage());
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
                 }
-            }
-        });
-        mSeekBar0.setFocusable(false);
 
-        mSeekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
-                if (value < mItems.size() && value >= 0) {
-                    mProgress = value;
-                    String text = mItems.get(value);
-                    if (mUnit != null) text += mUnit;
-                    mValue1.setText(text);
-                    if (mOnSeekBarListener != null) {
-                        mOnSeekBarListener.onMove(
-                                EqualizerView.this, mProgress, mItems.get(mProgress));
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    try {
+                        if (mOnSeekBarListener != null) {
+                            mOnSeekBarListener.onStop(
+                                    EqualizerView.this, mProgress, mItems.get(mProgress));
+                        }
+                    } catch (Exception e) {
+                        Log.crashlyticsE(e.getMessage());
                     }
                 }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                try {
-                    if (mOnSeekBarListener != null) {
-                        mOnSeekBarListener.onStop(
-                                EqualizerView.this, mProgress, mItems.get(mProgress));
-                    }
-                } catch (Exception e) {
-                    Log.crashlyticsE(e.getMessage());
-                }
-            }
-        });
-        mSeekBar1.setFocusable(false);
+            });
+            mSeekBars.get(i).setFocusable(false);
+        }
 
         super.onCreateView(view);
     }
 
-    public void setTitle0(CharSequence title) {
-        mTitleText0 = title;
+    public void setTitles(List<String> title) {
+        for (int i = 0; i < 8; i++) {
+            mTitlesText.add(title.get(i));
+        }
         refresh();
     }
 
     public void setProgress(int progress) {
         mProgress = progress;
-        refresh();
-    }
-
-    public void setMin(int min) {
-        mMin = min;
-        mItems.clear();
         refresh();
     }
 
@@ -171,21 +141,9 @@ public class EqualizerView extends RecyclerViewItem {
         refresh();
     }
 
-    public void setMax(int max) {
-        mMax = max;
-        mItems.clear();
-        refresh();
-    }
-
     public void setItems(List<String> items) {
         mItems.clear();
         mItems.addAll(items);
-        refresh();
-    }
-
-    public void setOffset(int offset) {
-        mOffset = offset;
-        mItems.clear();
         refresh();
     }
 
@@ -210,61 +168,41 @@ public class EqualizerView extends RecyclerViewItem {
     @Override
     protected void refresh() {
         super.refresh();
-        if (mTitle0 != null && mTitle1 != null && mTitle2 != null && mTitle3 != null
-                && mTitle4 != null && mTitle5 != null && mTitle6 != null && mTitle7 != null) {
-            if (mTitleText0 != null && mTitleText1 != null && mTitleText2 != null && mTitleText3 != null
-                    && mTitleText4 != null && mTitleText5 != null && mTitleText6 != null && mTitleText7 != null) {
-                mTitle0.setText(mTitleText0);
-                mTitle0.setVisibility(View.VISIBLE);
-                mTitle1.setText(mTitleText1);
-                mTitle1.setVisibility(View.VISIBLE);
-                mTitle2.setText(mTitleText2);
-                mTitle2.setVisibility(View.VISIBLE);
-                mTitle3.setText(mTitleText3);
-                mTitle3.setVisibility(View.VISIBLE);
-                mTitle4.setText(mTitleText4);
-                mTitle4.setVisibility(View.VISIBLE);
-                mTitle5.setText(mTitleText5);
-                mTitle5.setVisibility(View.VISIBLE);
-                mTitle6.setText(mTitleText6);
-                mTitle6.setVisibility(View.VISIBLE);
-                mTitle7.setText(mTitleText7);
-                mTitle7.setVisibility(View.VISIBLE);
+        if (mTitle0 != null && mTitle1 != null && mTitle2 != null && mTitle3 != null && mTitle4 != null
+                && mTitle5 != null && mTitle6 != null && mTitle7 != null) {
+            if (mTitlesText != null) {
+                for (int i = 0; i < 8; i++) {
+                    mTitles.get(i).setText(mTitlesText.get(i));
+                    mTitles.get(i).setVisibility(View.VISIBLE);
+                }
             } else {
-                mTitle0.setVisibility(View.GONE);
-                mTitle1.setVisibility(View.GONE);
-                mTitle2.setVisibility(View.GONE);
-                mTitle3.setVisibility(View.GONE);
-                mTitle4.setVisibility(View.GONE);
-                mTitle5.setVisibility(View.GONE);
-                mTitle6.setVisibility(View.GONE);
-                mTitle7.setVisibility(View.GONE);
-            }
-        }
-        if (mItems.size() == 0) {
-            for (int i = mMin; i <= mMax; i += mOffset) {
-                mItems.add(String.valueOf(i));
-            }
-        }
-        if (mSeekBar0 != null) {
-            mSeekBar0.setMax(mItems.size() - 1);
-            //mSeekBar.setMin(0);
-            mSeekBar0.setAlpha(mAlpha);
-            mSeekBar0.setEnabled(mEnabled);
-            if (mValue0 != null) {
-                try {
-                    String text = mItems.get(mProgress);
-                    mSeekBar0.setProgress(mProgress);
-                    if (mUnit != null) text += mUnit;
-                    mValue0.setText(text);
-                } catch (Exception ignored) {
-                    mValue0.setText(mValue0.getResources().getString(R.string.not_in_range));
+                for (int i = 0; i < 8; i++) {
+                    mTitles.get(i).setVisibility(View.GONE);
                 }
             }
-            if(mEnabled){
-                mSeekBar0.setAlpha(1f);
-            } else {
-                mSeekBar0.setAlpha(0.4f);
+        }
+        if (mSeekBar0 != null && mSeekBar1 != null && mSeekBar2 != null && mSeekBar3 != null
+                && mSeekBar4 != null && mSeekBar5 != null && mSeekBar6 != null && mSeekBar7 != null) {
+            for (int i = 0; i < 8; i++) {
+                mSeekBars.get(i).setMax(mItems.size() - 1);
+                mSeekBars.get(i).setAlpha(mAlpha);
+                mSeekBars.get(i).setEnabled(mEnabled);
+                if (mValue0 != null && mValue1 != null && mValue2 != null && mValue3 != null
+                        && mValue4 != null && mValue5 != null && mValue6 != null && mValue7 != null) {
+                    try {
+                        String text = mItems.get(mProgress);
+                        mSeekBars.get(i).setProgress(mProgress);
+                        if (mUnit != null) text += mUnit;
+                        mValues.get(i).setText(text);
+                    } catch (Exception ignored) {
+                        mValues.get(i).setText(mValues.get(i).getResources().getString(R.string.not_in_range));
+                    }
+                }
+                if (mEnabled) {
+                    mSeekBars.get(i).setAlpha(1f);
+                } else {
+                    mSeekBars.get(i).setAlpha(0.4f);
+                }
             }
         }
     }
