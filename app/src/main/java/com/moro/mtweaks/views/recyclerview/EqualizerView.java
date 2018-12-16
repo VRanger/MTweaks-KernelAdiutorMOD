@@ -1,17 +1,15 @@
 package com.moro.mtweaks.views.recyclerview;
 
+import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 import android.widget.SeekBar;
 
-import com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar;
 import com.moro.mtweaks.R;
 import com.moro.mtweaks.utils.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import androidx.appcompat.widget.AppCompatTextView;
 
 /**
  * Created by morogoku on 14.12.18.

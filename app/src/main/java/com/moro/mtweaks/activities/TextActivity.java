@@ -20,7 +20,7 @@
 package com.moro.mtweaks.activities;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
+import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.moro.mtweaks.R;
