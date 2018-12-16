@@ -21,6 +21,7 @@ package com.moro.mtweaks.views.recyclerview;
 
 import androidx.appcompat.widget.AppCompatTextView;
 import android.view.View;
+import android.widget.SeekBar;
 
 import com.moro.mtweaks.R;
 import com.moro.mtweaks.utils.Log;
@@ -45,6 +46,7 @@ public class SeekBarView extends RecyclerViewItem {
     private AppCompatTextView mSummary;
     private AppCompatTextView mValue;
     private DiscreteSeekBar mSeekBar;
+    private SeekBar seek;
 
     private CharSequence mTitleText;
     private CharSequence mSummaryText;
@@ -89,6 +91,22 @@ public class SeekBarView extends RecyclerViewItem {
             }
         });
 
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
         mSeekBar.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
             @Override
             public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
