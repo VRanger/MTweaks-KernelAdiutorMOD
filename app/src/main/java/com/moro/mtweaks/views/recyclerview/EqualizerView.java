@@ -3,6 +3,7 @@ package com.moro.mtweaks.views.recyclerview;
 import android.view.View;
 import android.widget.SeekBar;
 
+import com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar;
 import com.moro.mtweaks.R;
 import com.moro.mtweaks.utils.Log;
 
@@ -86,12 +87,13 @@ public class EqualizerView extends RecyclerViewItem {
 
         for (int i = 0; i < 8; i++) {
             int I = i;
+
             mSeekBars.get(i).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
-                public void onProgressChanged(SeekBar seekBar, int value, boolean fromUser) {
-                    if (value < mItems.size() && value >= 0) {
-                        mProgress.set(I, value);
-                        String text = mItems.get(value);
+                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                    if (i < mItems.size() && i >= 0) {
+                        mProgress.set(I, i);
+                        String text = mItems.get(i);
                         if (mUnit != null) text += mUnit;
                         mValues.get(I).setText(text);
                         if (mOnSeekBarListener != null) {
@@ -103,6 +105,7 @@ public class EqualizerView extends RecyclerViewItem {
 
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
+
                 }
 
                 @Override
@@ -117,6 +120,7 @@ public class EqualizerView extends RecyclerViewItem {
                     }
                 }
             });
+
             mSeekBars.get(i).setFocusable(false);
         }
 
