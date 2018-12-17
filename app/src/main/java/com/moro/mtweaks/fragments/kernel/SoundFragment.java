@@ -19,6 +19,8 @@
  */
 package com.moro.mtweaks.fragments.kernel;
 
+import android.icu.text.StringSearch;
+
 import com.moro.mtweaks.R;
 import com.moro.mtweaks.fragments.ApplyOnBootFragment;
 import com.moro.mtweaks.fragments.recyclerview.RecyclerViewFragment;
@@ -433,7 +435,7 @@ public class SoundFragment extends RecyclerViewFragment {
 
         String[] eqNames = getResources().getStringArray(R.array.eq_names);
         String[] eqDescriptions = getResources().getStringArray(R.array.eq_summary);
-        List<Integer> eqValues = ArizonaSound.getEqValues();
+        List<String> eqValues = ArizonaSound.getEqValues();
         List<String> eqLimit = ArizonaSound.getEqLimit();
 
         CardView test = new CardView(getActivity());

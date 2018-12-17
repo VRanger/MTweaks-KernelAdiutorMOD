@@ -187,12 +187,34 @@ public class ArizonaSound {
         return Arrays.asList(list);
     }
 
-    public static List<Integer> getEqValues() {
-        List<Integer> list = new ArrayList<>();
+    public static List<String> getEqValues() {
+        List<String> list = new ArrayList<>();
         for (String file : sEqGains) {
-            list.add(Utils.strToInt(Utils.readFile(file)));
+            list.add(Utils.readFile(file));
         }
         return list;
+    }
+
+    public static String getEqValue(int eq) {
+        switch (eq) {
+            case 0:
+                return Utils.readFile(ARIZONA_EQ_HPL_1);
+            case 1:
+                return Utils.readFile(ARIZONA_EQ_HPL_2);
+            case 2:
+                return Utils.readFile(ARIZONA_EQ_HPL_3);
+            case 3:
+                return Utils.readFile(ARIZONA_EQ_HPL_4);
+            case 4:
+                return Utils.readFile(ARIZONA_EQ_HPL_5);
+            case 5:
+                return Utils.readFile(ARIZONA_EQ_HPL_6);
+            case 6:
+                return Utils.readFile(ARIZONA_EQ_HPL_7);
+            case 7:
+                return Utils.readFile(ARIZONA_EQ_HPL_8);
+        }
+        return "";
     }
 
     public static void setEqValues(String value, int id, Context context) {
