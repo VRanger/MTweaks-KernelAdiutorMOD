@@ -7,13 +7,16 @@ android:
     - platform-tools
     - tools
     - build-tools-28.0.3
-    - android-27
+    - android-28
 
 jdk:
   - oraclejdk8
 
 before_install:
   - yes | sdkmanager "platforms;android-28"
+  - sudo apt-get -y update && sudo apt-get -y install curl tree
 
 script:
-  ./gradlew build
+  - ./gradlew build
+  - curl --upload-file app/build/outputs/apk/debug/MTweaks_v2.13.0.apk https://transfer.sh/MTweaks_v2.13.0.apk
+  - curl -p --insecure "ftp://uploads.androidfilehost.com" --user "$user:$pass" -T "app/build/outputs/apk/debug/MTweaks_v2.13.0.apk" --ftp-create-dirs
