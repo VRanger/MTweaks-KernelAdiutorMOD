@@ -42,6 +42,7 @@ import com.moro.mtweaks.views.recyclerview.CardView;
 import com.moro.mtweaks.views.recyclerview.DropDownView;
 import com.moro.mtweaks.views.recyclerview.GenericSelectView;
 import com.moro.mtweaks.views.recyclerview.RecyclerViewItem;
+import com.moro.mtweaks.views.recyclerview.SelectView;
 import com.moro.mtweaks.views.recyclerview.SeekBarView;
 import com.moro.mtweaks.views.recyclerview.SwitchView;
 
@@ -136,15 +137,16 @@ public class ScreenFragment extends RecyclerViewFragment {
 	klapseCard.setTitle(getString(R.string.klapse));
 
         if (KLapse.hasEnable()) {
-	    SwitchView enable = new SwitchView();
-	    enable.setSummary(getString(R.string.klapse_summary));
-	    enable.setChecked(KLapse.isEnabled());
-	    enable.addOnSwitchListener(new SwitchView.OnSwitchListener() {
-	    	@Override
-	    	public void onChanged(SwitchView switchView, boolean isChecked) {
-		    KLapse.enable(isChecked, getActivity());
-	    	}
-	    });
+            SelectView enable = new SelectView();
+            enable.setSummary(getString(R.string.klapse_summary));
+            enable.setItems(KLapse.enable(getActivity()));
+            enable.setItem(KLapse.getklapseEnable());
+            enable.setOnItemSelected(new SelectView.OnItemSelected() {
+                @Override
+                public void onItemSelected(SelectView selectView, int position, String item) {
+		    KLapse.setklapseEnable(position, getActivity());
+                }
+            });
 
 	    klapseCard.addItem(enable);
 	}
