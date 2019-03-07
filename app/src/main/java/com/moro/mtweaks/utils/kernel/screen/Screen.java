@@ -19,7 +19,7 @@
  */
 package com.moro.mtweaks.utils.kernel.screen;
 
-import com.smartpack.kernelmanager.utils.KLapse;
+import com.moro.mtweaks.utils.KLapse;
 
 /**
  * Created by willi on 01.06.16.
