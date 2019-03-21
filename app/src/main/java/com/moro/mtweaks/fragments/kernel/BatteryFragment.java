@@ -83,21 +83,9 @@ public class BatteryFragment extends RecyclerViewFragment {
 
     @Override
     protected void addItems(List<RecyclerViewItem> items) {
-        if (mBattery.hasChargeS7()) {
-            //chartypeInit(items);
-            charsourceInit(items);
-            statusInit(items);
-            currentavgInit(items);
-            currentInit(items);
-            voltageInit(items);
-            tempInit(items);
             levelInit(items);
+            voltageInit(items);
             healthInit(items);
-            chargeS7Init(items);
-        } else {
-            levelInit(items);
-            voltageInit(items);
-        }
         if (mBattery.hasForceFastCharge()) {
             forceFastChargeInit(items);
         }
@@ -630,23 +618,13 @@ public class BatteryFragment extends RecyclerViewFragment {
         CardView chargeRateCard = new CardView(getActivity());
         chargeRateCard.setTitle(getString(R.string.charge_rate));
 
-        if (mBattery.hasChargeRateEnable()) {
-            SwitchView chargeRate = new SwitchView();
-            chargeRate.setSummary(getString(R.string.charge_rate));
-            chargeRate.setChecked(mBattery.isChargeRateEnabled());
-            chargeRate.addOnSwitchListener((switchView, isChecked)
-                    -> mBattery.enableChargeRate(isChecked, getActivity()));
-
-            chargeRateCard.addItem(chargeRate);
-        }
-
         if (mBattery.hasChargingCurrent()) {
             SeekBarView chargingCurrent = new SeekBarView();
             chargingCurrent.setTitle(getString(R.string.charging_current));
             chargingCurrent.setSummary(getString(R.string.charging_current_summary));
             chargingCurrent.setUnit(getString(R.string.ma));
-            chargingCurrent.setMax(1500);
-            chargingCurrent.setMin(100);
+            chargingCurrent.setMax(3000);
+            chargingCurrent.setMin(1000);
             chargingCurrent.setOffset(10);
             chargingCurrent.setProgress(mBattery.getChargingCurrent() / 10 - 10);
             chargingCurrent.setOnSeekBarListener(new SeekBarView.OnSeekBarListener() {
@@ -679,7 +657,7 @@ public class BatteryFragment extends RecyclerViewFragment {
             mBatteryCharSource = mBattery.getS7ChargeSource(context);
             mBatteryTemp = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0) / 10D;
             mBatteryStatus = Utils.readFile("/sys/devices/battery/power_supply/battery/status");
-            mBatteryHealth = Utils.readFile("/sys/devices/battery/power_supply/battery/health");
+            mBatteryHealth = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, 0);
             mBatteryHealthValue = mBattery.getHealthValue();
         }
     };

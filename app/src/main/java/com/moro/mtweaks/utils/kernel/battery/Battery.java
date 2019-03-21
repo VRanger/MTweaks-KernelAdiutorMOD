@@ -48,9 +48,7 @@ public class Battery {
     private static final String FORCE_FAST_CHARGE = "/sys/kernel/fast_charge/force_fast_charge";
     private static final String BLX = "/sys/devices/virtual/misc/batterylifeextender/charging_limit";
 
-    private static final String CHARGE_RATE = "/sys/kernel/thundercharge_control";
-    private static final String CHARGE_RATE_ENABLE = CHARGE_RATE + "/enabled";
-    private static final String CUSTOM_CURRENT = CHARGE_RATE + "/custom_current";
+    private static final String CUSTOM_CURRENT = "/sys/class/power_supply/battery/constant_charge_current_max";
 
     private static final String CHARGE_S7 = "/sys/devices/battery";
     private static final String S7_UNSTABLE_CHARGE = CHARGE_S7 + "/unstable_power_detection";
@@ -200,18 +198,6 @@ public class Battery {
 
     public boolean hasChargingCurrent() {
         return Utils.existFile(CUSTOM_CURRENT);
-    }
-
-    public void enableChargeRate(boolean enable, Context context) {
-        run(Control.write(enable ? "1" : "0", CHARGE_RATE_ENABLE), CHARGE_RATE_ENABLE, context);
-    }
-
-    public boolean isChargeRateEnabled() {
-        return Utils.readFile(CHARGE_RATE_ENABLE).equals("1");
-    }
-
-    public boolean hasChargeRateEnable() {
-        return Utils.existFile(CHARGE_RATE_ENABLE);
     }
 
     public void setBlx(int value, Context context) {
